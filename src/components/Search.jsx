@@ -12,6 +12,8 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+import { motion, useAnimation } from "framer-motion";
+
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
@@ -77,7 +79,15 @@ const Search = () => {
     setUsername("")
   };
   return (
-    <div className="search">
+    <motion.div
+    initial={{ opacity: 0, y: 75 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.25,
+          //   // ease: [0, 0.71, 0.2, 1.01],
+        }}
+     className="search">
       <div className="searchForm">
         <input
           type="text"
@@ -96,7 +106,7 @@ const Search = () => {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

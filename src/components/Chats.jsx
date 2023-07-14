@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase";
+import { motion, useAnimation } from "framer-motion";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -29,10 +30,18 @@ const Chats = () => {
   };
 
   return (
-    <div className="chats">
+    <motion.div 
+    initial={{ opacity: 0, y: 75 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.25,
+          //   // ease: [0, 0.71, 0.2, 1.01],
+        }}
+         className="chats">
       {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
         <div
-          className="userChat"
+          className="userChat "
           key={chat[0]}
           onClick={() => handleSelect(chat[1].userInfo)}
         >
@@ -43,7 +52,7 @@ const Chats = () => {
           </div>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

@@ -5,6 +5,8 @@ import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
+import logo from "../img/logo2.png";
+import { motion, useAnimation } from "framer-motion";
 
 const Register = () => {
   const [err, setErr] = useState(false);
@@ -61,26 +63,82 @@ const Register = () => {
 
   return (
     <div className="formContainer">
-      <div className="formWrapper">
-        <span className="logo">Lama Chat</span>
+      <motion.div
+       initial={{ opacity: 0, y: 75 }}
+       whileInView={{ opacity: 1, y: 0 }}
+       transition={{
+         duration: 0.8,
+         delay: 0.25,
+         //   // ease: [0, 0.71, 0.2, 1.01],
+       }}
+       className="logoLForm">
+          <img className="logofirst" src={logo} alt="" />
+        </motion.div>
+      <motion.div 
+      initial={{ opacity: 0, y: 75 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.25,
+        //   // ease: [0, 0.71, 0.2, 1.01],
+      }}
+      className="formWrapper">
+       
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
-          <input required type="text" placeholder="display name" />
-          <input required type="email" placeholder="email" />
-          <input required type="password" placeholder="password" />
-          <input required style={{ display: "none" }} type="file" id="file" />
+          <motion.input initial={{ opacity: 0, y: 75 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.25,
+              //   // ease: [0, 0.71, 0.2, 1.01],
+            }} required type="text" placeholder="Display name" />
+          <motion.input initial={{ opacity: 0, y: 75 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.25,
+              //   // ease: [0, 0.71, 0.2, 1.01],
+            }} required type="email" placeholder="Email" />
+          <motion.input initial={{ opacity: 0, y: 75 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.25,
+              //   // ease: [0, 0.71, 0.2, 1.01],
+            }} required type="password" placeholder="Enter password" />
+          <motion.input initial={{ opacity: 0, y: 75 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.25,
+              //   // ease: [0, 0.71, 0.2, 1.01],
+            }} required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
-            <img src={Add} alt="" />
+            <motion.img initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.25,
+              //   // ease: [0, 0.71, 0.2, 1.01],
+            }} 
+            src={Add} alt="" />
             <span>Add an avatar</span>
           </label>
-          <button disabled={loading}>Sign up</button>
+          <motion.button initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.25,
+              //   // ease: [0, 0.71, 0.2, 1.01],
+            }} disabled={loading}>Sign up</motion.button>
           {loading && "Uploading and compressing the image please wait..."}
           {err && <span>Something went wrong</span>}
         </form>
         <p>
-          You do have an account? <Link to="/register">Login</Link>
+          You do have an account? <Link className="link" to="/login">Login</Link>
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };

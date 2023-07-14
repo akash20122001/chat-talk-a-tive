@@ -26,11 +26,11 @@ const Message = ({ message }) => {
           }
           alt=""
         />
-        <span>just now</span>
+        {/* <span>just now</span> */}
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
-        {message.img && <img src={message.img} alt="" />}
+        {message.img && <img className="image" src={message.img} alt="" />}
       </div>
     </div>
   );
